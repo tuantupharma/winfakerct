@@ -1,6 +1,8 @@
-# AutoTimeFix
+# AutoTimeFix: Windows Time Sync Recovery for Old Laptops
 
-PowerShell project for Windows machines whose RTC/CMOS clock resets after a power loss. The script does not try to re-sync from the internet anymore. Instead, it keeps the last known good date, checks whether the system date has fallen back to a bad year like 2019, and restores the saved date. NetTime remains installed and is expected to handle its own automatic synchronization.
+AutoTimeFix helps fix the wrong date and time on an old Windows laptop when a dead CMOS/BIOS battery or power loss resets its RTC clock. It restores the last known good date at startup so a time synchronization program such as NetTime can sync Windows with internet time afterward.
+
+This is a Windows clock recovery tool, not an NTP client: it does not fetch internet time or replace NetTime. It saves a known-good date, detects a clock reset to an earlier year (for example, 2019), and restores the saved date before NetTime's automatic synchronization.
 
 ## Behavior
 
