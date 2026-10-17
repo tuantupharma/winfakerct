@@ -91,10 +91,10 @@ function Get-NtpUtc {
                 $unix
             ).UtcDateTime
 
-            # Reject obviously implausible dates
-            # shortcut: fixed 2024-2035 window, widen before the 2036 NTP era rollover
-            if ($utc.Year -lt 2024 -or
-   		$utc.Year -gt 2035) {
+            # Reject obviously implausible dates.
+            # Fixed reasonable window 2020-2045; review before 2046.
+            if ($utc.Year -lt 2020 -or
+   		$utc.Year -gt 2045) {
                 throw "Implausible NTP date: $utc"
             }
 

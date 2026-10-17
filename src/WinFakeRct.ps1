@@ -3,6 +3,10 @@ param(
     [switch]$Test,
     [string]$ConfigPath = ''
 )
+
+# Guard: when dot-sourced (e.g. by tests), expose functions but do not run main logic.
+if ($MyInvocation.ScriptName -ne $PSCommandPath) { return }
+
 $ErrorActionPreference = 'Stop'
 if ([string]::IsNullOrWhiteSpace($ConfigPath)) {
     $ConfigPath = Join-Path $PSScriptRoot '..\config.json'
