@@ -1,7 +1,7 @@
 [CmdletBinding()]
 param(
     [string]$NssmPath = '',
-    [string]$ServiceName = 'AutoTimeFix'
+    [string]$ServiceName = 'winfakerct'
 )
 $ErrorActionPreference = 'Stop'
 $ps = "$env:SystemRoot\System32\WindowsPowerShell\v1.0\powershell.exe"

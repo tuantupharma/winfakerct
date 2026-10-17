@@ -1,11 +1,11 @@
 $ErrorActionPreference = 'Stop'
 
 $projectRoot = Split-Path -Parent $PSScriptRoot
-$runner = Join-Path $PSScriptRoot 'AutoTimeFix.ps1'
+$runner = Join-Path $PSScriptRoot 'WinFakeRct.ps1'
 $logDir = Join-Path $projectRoot 'logs'
 if (-not (Test-Path -LiteralPath $logDir)) { New-Item -ItemType Directory -Path $logDir -Force | Out-Null }
-$logFile = Join-Path $logDir 'AutoTimeFix.log'
-$scheduleFile = Join-Path $logDir 'AutoTimeFix.NextRun.txt'
+$logFile = Join-Path $logDir 'winfakerct.log'
+$scheduleFile = Join-Path $logDir 'winfakerct.NextRun.txt'
 $successInterval = [TimeSpan]::FromDays(1)
 $retryInterval = [TimeSpan]::FromHours(4)
 $powershell = Join-Path $env:SystemRoot 'System32\WindowsPowerShell\v1.0\powershell.exe'
@@ -39,12 +39,12 @@ while ($true) {
 
     $exitCode = 1
     try {
-        Write-ServiceLog INFO 'Starting scheduled AutoTimeFix run.'
+        Write-ServiceLog INFO 'Starting scheduled WinFakeRct run.'
         $arguments = "-NoProfile -ExecutionPolicy Bypass -File `"$runner`""
         $process = Start-Process -FilePath $powershell -ArgumentList $arguments -PassThru -Wait -WindowStyle Hidden
         $exitCode = $process.ExitCode
     } catch {
-        Write-ServiceLog ERROR "Could not run AutoTimeFix: $($_.Exception.Message)"
+        Write-ServiceLog ERROR "Could not run WinFakeRct: $($_.Exception.Message)"
     }
 
     if ($exitCode -eq 0) {

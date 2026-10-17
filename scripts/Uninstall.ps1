@@ -3,7 +3,7 @@ param(
     [string]$NssmPath = ''
 )
 $ErrorActionPreference='Stop'
-$serviceName='AutoTimeFix'
+$serviceName='winfakerct'
 $ps = "$env:SystemRoot\System32\WindowsPowerShell\v1.0\powershell.exe"
 $startupScript = Join-Path $PSScriptRoot 'NetTimeStartup.ps1'
 & $ps -NoProfile -ExecutionPolicy Bypass -File $startupScript -Action Restore

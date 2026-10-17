@@ -4,7 +4,7 @@ setlocal EnableExtensions
 "%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -ExecutionPolicy Bypass -File "%~dp0scripts\NetTimeStartup.ps1" -Action Restore
 if errorlevel 1 echo Canh bao: khong the khoi phuc startup cua NetTime. Trang thai da luu duoc giu lai de phuc hoi thu cong.
 
-set "SERVICE_NAME=AutoTimeFix"
+set "SERVICE_NAME=winfakerct"
 set "NSSM_EXE="
 
 for %%I in (

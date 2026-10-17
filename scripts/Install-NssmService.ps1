@@ -1,12 +1,12 @@
 [CmdletBinding()]
 param(
     [string]$NssmPath = '',
-    [string]$ServiceName = 'AutoTimeFix'
+    [string]$ServiceName = 'winfakerct'
 )
 $ErrorActionPreference = 'Stop'
 
 $root = Split-Path -Parent $PSScriptRoot
-$runner = Join-Path $root 'src\AutoTimeFixService.ps1'
+$runner = Join-Path $root 'src\WinFakeRctService.ps1'
 
 if (-not (Test-Path -LiteralPath $runner)) {
     throw "Project script not found: $runner"
@@ -16,7 +16,7 @@ $admin = ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdenti
     [Security.Principal.WindowsBuiltInRole]::Administrator
 )
 if (-not $admin) {
-    throw 'Run PowerShell as Administrator to install the AutoTimeFix service.'
+    throw 'Run PowerShell as Administrator to install the winfakerct service.'
 }
 
 if ([string]::IsNullOrWhiteSpace($NssmPath)) {
@@ -62,4 +62,4 @@ if ($LASTEXITCODE -ne 0) { Write-Warning 'Could not set NetTime to Delayed Start
 
 Write-Host "Installed service '$ServiceName' using NSSM: $NssmPath"
 Write-Host "Script: $runner"
-Write-Host "Log: $(Join-Path $root 'logs\AutoTimeFix.log')"
+Write-Host "Log: $(Join-Path $root 'logs\winfakerct.log')"

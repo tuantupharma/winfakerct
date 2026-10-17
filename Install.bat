@@ -3,8 +3,8 @@ setlocal EnableExtensions EnableDelayedExpansion
 
 set "PROJECT_ROOT=%~dp0"
 if "%PROJECT_ROOT:~-1%"=="\" set "PROJECT_ROOT=%PROJECT_ROOT:~0,-1%"
-set "SERVICE_NAME=AutoTimeFix"
-set "NSSM_DIR=%ProgramData%\AutoTimeFix\nssm"
+set "SERVICE_NAME=winfakerct"
+set "NSSM_DIR=%ProgramData%\winfakerct\nssm"
 set "NSSM_EXE="
 
 net session >nul 2>&1
@@ -42,8 +42,8 @@ if not defined NSSM_EXE (
     exit /b 1
 )
 
-if not exist "%PROJECT_ROOT%\src\AutoTimeFixService.ps1" (
-    echo Loi: khong tim thay service runner tai "%PROJECT_ROOT%\src\AutoTimeFixService.ps1"
+if not exist "%PROJECT_ROOT%\src\WinFakeRctService.ps1" (
+    echo Loi: khong tim thay service runner tai "%PROJECT_ROOT%\src\WinFakeRctService.ps1"
     exit /b 1
 )
 
@@ -56,7 +56,7 @@ if not errorlevel 1 (
 )
 
 echo Dang cai dat service: %SERVICE_NAME%
-"%NSSM_EXE%" install "%SERVICE_NAME%" "%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -ExecutionPolicy Bypass -File "%PROJECT_ROOT%\src\AutoTimeFixService.ps1"
+"%NSSM_EXE%" install "%SERVICE_NAME%" "%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -ExecutionPolicy Bypass -File "%PROJECT_ROOT%\src\WinFakeRctService.ps1"
 "%NSSM_EXE%" set "%SERVICE_NAME%" AppDirectory "%PROJECT_ROOT%"
 "%NSSM_EXE%" set "%SERVICE_NAME%" ObjectName LocalSystem
 "%NSSM_EXE%" set "%SERVICE_NAME%" Start SERVICE_AUTO_START
@@ -71,10 +71,10 @@ if errorlevel 1 (
 if errorlevel 1 echo Canh bao: khong the dat NetTime sang Delayed Start. Hay chinh bang services.msc.
 
 echo.
-echo Cai dat AutoTimeFix thanh cong.
+echo Cai dat winfakerct thanh cong.
 echo - Service: %SERVICE_NAME%
-echo - Service runner: %PROJECT_ROOT%\src\AutoTimeFixService.ps1
-echo - Log: %PROJECT_ROOT%\logs\AutoTimeFix.log
+echo - Service runner: %PROJECT_ROOT%\src\WinFakeRctService.ps1
+echo - Log: %PROJECT_ROOT%\logs\winfakerct.log
 echo.
 echo Luu y: NetTime phai duoc cai san va tu dong dong bo thoi gian theo cach cua no.
 echo.
