@@ -1,7 +1,7 @@
-{
-  "NetTimePath": "",
-  "LastKnownDateFile": "logs\\LastKnownDate.txt",
-  "LastKnownDateHistoryFile": "logs\\LastKnownDateHistory.txt",
-  "ResetYearThreshold": 2020,
-  "RollbackToleranceHours": 24
+﻿{
+    "NetTimePath":  "",
+    "LastKnownDateFile":  "logs\\LastKnownDate.txt",
+    "LastKnownDateHistoryFile":  "logs\\LastKnownDateHistory.txt",
+    "ResetYearThreshold":  2026,
+    "RollbackToleranceHours":  24
 }

@@ -75,13 +75,13 @@ if "%CHON%"=="1" (
 
 echo.
 set /p NAM="Nhap nam hien tai (vi du 2026) de cai dat ResetYearThreshold: "
-echo %NAM% | findstr /r "^[0-9]*$" >nul
-if errorlevel 1 (
-    echo Nam khong hop le. Thoat.
-    exit /b 1
-)
 if "%NAM%"=="" (
     echo Chua nhap nam. Thoat.
+    exit /b 1
+)
+set /a NAM_TEST=%NAM% 2>nul
+if errorlevel 1 (
+    echo Nam khong hop le. Thoat.
     exit /b 1
 )
 
@@ -165,13 +165,13 @@ echo.
 echo Cai dat thanh cong.
 if defined INSTALL_WINFAKERCT (
     echo - Service: %SERVICE_NAME% (WinFakeRct, can NetTime)
-    echo - Service runner: %PROJECT_ROOT%\src\WinFakeRctService.ps1
+    echo - Kiem tra: sc query "%SERVICE_NAME%"
 )
 if defined INSTALL_REPAIRCLOCK (
     echo - Service: %RC_SERVICE_NAME% (RepairClock, khong can NetTime)
-    echo - Service runner: %PROJECT_ROOT%\src\RepairClockService.ps1
+    echo - Kiem tra: sc query "%RC_SERVICE_NAME%"
 )
-echo - Log: %PROJECT_ROOT%\logs\winfakerct.log
+echo - Thu muc log: %PROJECT_ROOT%\logs\
 echo.
 echo Luu y: Neu chon RepairClock, service se chay tu dong lay gio tu Internet (NTP/HTTPS) va cap nhat dong ho.
 echo.
